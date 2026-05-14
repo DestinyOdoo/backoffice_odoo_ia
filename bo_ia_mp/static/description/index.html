@@ -3,136 +3,291 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>BackOffice IA Memory Point – Odoo 17</title>
+    <title>BackOffice IA Memory Point – Odoo 17 | BackOffice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        body { font-family: "Inter", sans-serif; background-color: #f0f4f8; }
+        :root {
+            --bo-primary: #2e75b6;
+            --bo-primary-dark: #1e5a8e;
+            --bo-primary-light: #4a9ad9;
+            --bo-bg: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(46, 117, 182, 0.15);
+            --bo-shadow: rgba(46, 117, 182, 0.18);
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: var(--bo-bg);
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .badge-custom {
+            background: #fff;
+            color: var(--bo-primary-dark);
+            border: 1px solid #e2e8f0;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        .badge-custom:hover {
+            transform: scale(1.05);
+            border-color: var(--bo-primary);
+        }
+
+        .hero {
+            background: radial-gradient(circle at top left, #ffffff 0%, #eef6ff 100%);
+            border: 1px solid rgba(46, 117, 182, 0.1);
+            border-radius: 32px;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 200px; height: 200px;
+            background: var(--bo-primary-light);
+            filter: blur(100px);
+            opacity: 0.15;
+        }
+
+        .module-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b 0%, var(--bo-primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            display: inline-block;
+        }
+
         .highlight-box {
-            border-radius: 12px; border: 1px solid #e2e8f0;
-            background: #fff; padding: 28px; margin-bottom: 24px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 1);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
         .highlight-box:hover {
-            transform: translateY(-4px); box-shadow: 0 12px 28px rgba(6, 182, 212, 0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px var(--bo-shadow);
+            border-color: var(--bo-primary-light);
         }
-        .panel-teal {
-            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
-            border: 1px solid #5eead4; border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.12);
-            padding: 32px; margin-bottom: 30px;
-        }
-        .panel-slate {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border: 1px solid #cbd5e1; border-radius: 12px;
-            padding: 32px; margin-bottom: 30px;
-        }
-        .module-title { color: #0e7490; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+
         .key-icon {
-            background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%);
-            border-radius: 12px; height: 50px; width: 50px;
+            background: linear-gradient(135deg, var(--bo-primary-light) 0%, var(--bo-primary-dark) 100%);
+            border-radius: 18px;
+            height: 64px; width: 64px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
         }
-        .key-icon i { color: #fff; font-size: 24px; }
-        .badge-custom {
-            background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%);
-            color: white; padding: 6px 18px; border-radius: 25px;
-            font-size: 0.9rem; font-weight: 600; margin: 5px; display: inline-block;
+        .key-icon i { color: #fff; font-size: 1.35rem; }
+        .highlight-box:hover .key-icon {
+            transform: rotate(-10deg) scale(1.1);
         }
-        .price-badge {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            font-size: 1.2rem; padding: 10px 28px;
+
+        .heading-accent { color: var(--bo-primary-dark); }
+
+        .panel-muted {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1rem;
+            border: 1px solid #eef2f6;
+            transition: all 0.3s ease;
+        }
+        .panel-muted:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            margin-top: 2.75rem;
+            margin-bottom: 1.5rem;
         }
         .section-title {
-            color: #0f172a; font-weight: 700; text-transform: uppercase;
-            font-size: 1.75rem; margin-bottom: 2rem; text-align: center;
+            font-weight: 800;
+            font-size: 2rem;
+            margin: 0 0 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px; left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 4px;
+            background: var(--bo-primary);
+            border-radius: 2px;
+        }
+
+        .panel-install {
+            padding: 1.75rem;
+        }
+        .panel-install.border-accent {
+            border-left: 4px solid var(--bo-primary);
+        }
+
+        .bo-copy-panel,
+        .bo-copy-panel p,
+        .bo-copy-panel ul,
+        .bo-copy-panel ol,
+        .bo-copy-panel li {
+            color: #2c5282;
+        }
+        .bo-copy-panel code {
+            color: var(--bo-primary-dark);
+            background-color: rgba(46, 117, 182, 0.12);
+            padding: 0.12em 0.4em;
+            border-radius: 6px;
+            font-size: 0.92em;
+        }
+        .bo-copy-panel strong {
+            color: var(--bo-primary-dark);
+        }
+        .bo-copy-panel a {
+            color: var(--bo-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .bo-copy-panel a:hover {
+            color: var(--bo-primary-dark);
+            text-decoration: underline;
+        }
+
+        .lead code,
+        p.text-secondary code,
+        p.text-muted code {
+            color: var(--bo-primary-dark);
+            background-color: rgba(46, 117, 182, 0.1);
+            padding: 0.08em 0.35em;
+            border-radius: 4px;
+            font-size: 0.92em;
+        }
+
+        .obj-row .key-icon-obj {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 0;
+        }
+        .obj-row .key-icon-obj i {
+            font-size: 1.75rem;
         }
     </style>
 </head>
 <body>
+
 <div class="container my-5">
 
-    <!-- Badges: versión, precio, licencia -->
-    <div class="my-3 d-flex flex-wrap align-items-center gap-2 justify-content-end">
-        <div class="badge-custom">Odoo 17</div>
-        <div class="badge-custom">OPL-1</div>
-        <div class="badge-custom price-badge">Gratis</div>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4" data-aos="fade-down">
+        <span class="badge-custom">Odoo 17</span>
+        <span class="badge-custom">OPL-1</span>
+        <span class="badge-custom" style="border-left: 4px solid #0d9488;">Gratis</span>
     </div>
 
-    <!-- Precio (personalizar para tienda Odoo) -->
-    <div class="panel-teal text-center mb-5">
-        <span style="letter-spacing: 3px; color: #0e7490; font-weight: bold; text-transform: uppercase; font-size: 13px;">
+    <header class="hero text-center mb-4" data-aos="zoom-in">
+        <div class="mb-3">
+            <img src="icon.png" alt="BackOffice Logo" style="height: 50px; animation: float 3s ease-in-out infinite;">
+        </div>
+        <span class="d-block mb-2" style="letter-spacing: 4px; color: var(--bo-primary); font-weight: 700; text-transform: uppercase; font-size: 12px;">
             Conexión Odoo – IA / Lectura de información
         </span>
-        <h1 class="module-title">🤖 BackOffice IA Memory Point</h1>
-        <p style="font-size: 1.15rem; color: #475569; margin-bottom: 1.5rem; line-height: 1.7;">
-            Conecta Odoo con sistemas de IA. Expone metadatos de aplicaciones y modelos (tablas, campos) 
+        <h1 class="mb-3 d-flex flex-wrap align-items-center justify-content-center gap-3">
+            <span class="fs-1" aria-hidden="true">🤖</span>
+            <span class="module-title">BackOffice IA Memory Point</span>
+        </h1>
+        <p class="lead text-secondary mb-4 mx-auto" style="max-width: 720px; line-height: 1.7;">
+            Conecta Odoo con sistemas de IA. Expone metadatos de aplicaciones y modelos (tablas, campos)
             para que la IA pueda leer y consumir el esquema de datos de Odoo de forma estructurada.
         </p>
-        <p class="mb-0">
-            <strong>Precio sugerido para tienda Odoo:</strong> 
-            <span class="badge bg-success fs-6 px-3 py-2">Gratis</span> 
-            <small class="text-muted d-block mt-2">(O cambiar por ej. $29 USD al publicar)</small>
-        </p>
-    </div>
+        <div class="border-top pt-4 mx-auto" style="max-width: 560px;">
+            <p class="mb-2 text-secondary">
+                <strong>Precio sugerido para tienda Odoo:</strong>
+                <span class="badge bg-success fs-6 px-3 py-2">Gratis</span>
+            </p>
+            <p class="mb-0 text-muted small">(O cambiar por ej. $29 USD al publicar)</p>
+        </div>
+    </header>
 
-    <!-- Objetivo -->
-    <div class="panel-slate mb-5">
-        <div class="row align-items-center">
+    <div class="panel-muted panel-install mb-5 obj-row" data-aos="fade-up">
+        <div class="row align-items-center g-3">
             <div class="col-md-2 text-center">
-                <div class="key-icon mx-auto" style="height: 70px; width: 70px;">
-                    <i class="fa fa-bullseye" style="font-size: 36px;"></i>
+                <div class="key-icon key-icon-obj mx-auto d-inline-flex">
+                    <i class="fa fa-bullseye"></i>
                 </div>
             </div>
             <div class="col-md-10">
-                <h4 style="color: #0e7490; font-weight: 700;">Objetivo principal</h4>
-                <p style="font-size: 1.05rem; margin-bottom: 0; color: #475569;">
-                    Habilitar la <strong>conexión y lectura de información entre Odoo e IA</strong>. 
-                    Expone el esquema de datos (modelos, tablas, campos) para que sistemas de IA 
+                <h4 class="fw-bold heading-accent mb-2">Objetivo principal</h4>
+                <p class="text-secondary mb-0" style="font-size: 1.05rem;">
+                    Habilitar la <strong>conexión y lectura de información entre Odoo e IA</strong>.
+                    Expone el esquema de datos (modelos, tablas, campos) para que sistemas de IA
                     puedan consumirlo, integrarse vía API, RAG o asistentes inteligentes.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Características principales -->
-    <h2 class="section-title">Conexión IA – Características</h2>
-    <div class="row mb-4">
-        <div class="col-lg-4 mb-4">
+    <div class="section-title-wrap" data-aos="fade-up">
+        <h2 class="section-title">Conexión IA – Características</h2>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="highlight-box text-center h-100">
                 <div class="key-icon mx-auto mb-3"><i class="fa fa-plug"></i></div>
-                <h5 style="font-weight:bold; color: #0e7490;">Conexión con IA</h5>
-                <p style="color: #475569;">Expone metadatos de Odoo (modelos, tablas, campos) para que sistemas de IA puedan conectarse y leer el esquema de datos.</p>
+                <h5 class="fw-bold heading-accent">Conexión con IA</h5>
+                <p class="text-secondary small mb-0">Expone metadatos de Odoo (modelos, tablas, campos) para que sistemas de IA puedan conectarse y leer el esquema de datos.</p>
             </div>
         </div>
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="highlight-box text-center h-100">
                 <div class="key-icon mx-auto mb-3"><i class="fa fa-book-open"></i></div>
-                <h5 style="font-weight:bold; color: #0e7490;">Lectura de información</h5>
-                <p style="color: #475569;">Estructura lista para consumo por IA: RAG, embeddings, asistentes inteligentes y APIs que necesiten conocer el modelo de Odoo.</p>
+                <h5 class="fw-bold heading-accent">Lectura de información</h5>
+                <p class="text-secondary small mb-0">Estructura lista para consumo por IA: RAG, embeddings, asistentes inteligentes y APIs que necesiten conocer el modelo de Odoo.</p>
             </div>
         </div>
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="highlight-box text-center h-100">
                 <div class="key-icon mx-auto mb-3"><i class="fa fa-database"></i></div>
-                <h5 style="font-weight:bold; color: #0e7490;">Datos estructurados</h5>
-                <p style="color: #475569;">Por cada aplicación: modelos, tablas y campos. Ideal para generar documentación automática o contextos para LLMs.</p>
+                <h5 class="fw-bold heading-accent">Datos estructurados</h5>
+                <p class="text-secondary small mb-0">Por cada aplicación: modelos, tablas y campos. Ideal para generar documentación automática o contextos para LLMs.</p>
             </div>
         </div>
     </div>
 
-    <!-- Contenido de la vista formulario -->
-    <h2 class="section-title">Vista de aplicación</h2>
-    <div class="panel-slate">
-        <ul style="font-size: 1.05rem; color: #475569; line-height: 2;">
+    <div class="section-title-wrap" data-aos="fade-up">
+        <h2 class="section-title">Vista de aplicación</h2>
+    </div>
+    <div class="panel-muted panel-install mb-5 bo-copy-panel" data-aos="fade-up">
+        <ul class="small mb-0 ps-3" style="line-height: 2;">
             <li><strong>Nombre</strong> de la aplicación</li>
             <li><strong>Descripción</strong> del módulo</li>
             <li><strong>Pestaña Models:</strong>
-                <ul>
+                <ul class="mt-1">
                     <li>Model: nombre técnico (ej. sale.order)</li>
                     <li>Table Name: tabla en BD (ej. sale_order)</li>
                     <li>Fields: todos los campos del modelo</li>
@@ -142,49 +297,68 @@
         </ul>
     </div>
 
-    <!-- Permisos -->
-    <h2 class="section-title">Permisos (Data IA)</h2>
-    <div class="row mb-5">
-        <div class="col-md-6 mb-3">
-            <div class="highlight-box">
-                <h5 style="color: #0e7490; font-weight: 700;"><i class="fa fa-user"></i> Data IA / User</h5>
-                <p style="color: #475569; margin-bottom: 0;">Acceso al catálogo de aplicaciones y modelos.</p>
+    <div class="section-title-wrap" data-aos="fade-up">
+        <h2 class="section-title">Permisos (Data IA)</h2>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="highlight-box h-100">
+                <h5 class="fw-bold heading-accent mb-2"><i class="fa fa-user me-2"></i>Data IA / User</h5>
+                <p class="text-secondary small mb-0">Acceso al catálogo de aplicaciones y modelos.</p>
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="highlight-box">
-                <h5 style="color: #0e7490; font-weight: 700;"><i class="fa fa-user-shield"></i> Data IA / Manager</h5>
-                <p style="color: #475569; margin-bottom: 0;">Control completo sobre el módulo.</p>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="highlight-box h-100">
+                <h5 class="fw-bold heading-accent mb-2"><i class="fa fa-user-shield me-2"></i>Data IA / Manager</h5>
+                <p class="text-secondary small mb-0">Control completo sobre el módulo.</p>
             </div>
         </div>
     </div>
 
-    <!-- Instalación -->
-    <h2 class="section-title">Instalación</h2>
-    <div class="panel-teal mb-5">
-        <ol style="font-size: 1.05rem; color: #475569; line-height: 1.9;">
+    <div class="section-title-wrap" data-aos="fade-up">
+        <h2 class="section-title">Dependencias</h2>
+    </div>
+    <div class="panel-muted panel-install border-accent mb-4 bo-copy-panel" data-aos="fade-up">
+        <ul class="mb-0 small ps-3">
+            <li><code>base</code>, <code>web</code>, <code>bo_license_client</code></li>
+        </ul>
+    </div>
+
+    <div class="section-title-wrap" data-aos="fade-up">
+        <h2 class="section-title">Instalación</h2>
+    </div>
+    <div class="panel-muted panel-install border-accent mb-5 bo-copy-panel" data-aos="fade-up">
+        <ol class="small mb-3 ps-3" style="line-height: 1.9;">
             <li>Copiar la carpeta <code>bo_ia_mp</code> a <code>addons_path</code></li>
             <li>Reiniciar Odoo y actualizar la lista de aplicaciones</li>
             <li>Buscar "BackOffice IA Memory Point" e instalar</li>
         </ol>
-        <p class="mb-0"><strong>Nota:</strong> Al instalar se ejecuta un hook que carga los modelos de todos los módulos instalados.</p>
+        <p class="mb-0 small"><strong>Nota:</strong> Al instalar se ejecuta un hook que carga los modelos de todos los módulos instalados.</p>
     </div>
 
-    <!-- Autor y contacto -->
-    <div class="panel-slate">
+    <div class="panel-muted panel-install" data-aos="fade-up">
         <div class="row align-items-center">
             <div class="col-md-8">
-                <h4 style="color: #0e7490; font-weight: 700;"><i class="fa fa-building"></i> BackOffice SAS</h4>
-                <p class="mb-0" style="color: #475569;">
-                    Web: <a href="https://boffice.cloud" target="_blank">boffice.cloud</a>
+                <h4 class="fw-bold heading-accent"><i class="fa fa-building me-2"></i>BackOffice SAS</h4>
+                <p class="mb-0 text-secondary">
+                    Web: <a href="https://www.boffice.cloud/" target="_blank" rel="noopener" style="color: var(--bo-primary); font-weight: 600;">boffice.cloud</a>
                 </p>
             </div>
-            <div class="col-md-4 text-center">
-                <span class="badge-custom">v17.0.1.0.0</span>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <span class="badge-custom">v17.0.1.7.0</span>
             </div>
         </div>
     </div>
 
 </div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-out-quad'
+    });
+</script>
 </body>
 </html>
