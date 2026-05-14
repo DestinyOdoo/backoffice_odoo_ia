@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Category "Data IA" - distinct to avoid overlap with other modules -->
+    <record id="module_category_data_ia" model="ir.module.category">
+        <field name="name">Data IA</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- User group: Data IA / User -->
+    <record id="group_bo_ia_mp_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_data_ia"/>
+    </record>
+
+    <!-- Manager group: Data IA / Manager (includes user) -->
+    <record id="group_bo_ia_mp_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_data_ia"/>
+        <field name="implied_ids" eval="[(4, ref('group_bo_ia_mp_user'))]"/>
+    </record>
+
+</odoo>

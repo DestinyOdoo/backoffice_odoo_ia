@@ -1,0 +1,9 @@
+// MainComponentsContainer va al final del WebClient; sin posición fija el banner queda fuera de vista.
+.o_bo_license_subscription_banner {
+    position: fixed;
+    top: var(--o-navbar-height, 46px);
+    left: 0;
+    right: 0;
+    z-index: 1038;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}

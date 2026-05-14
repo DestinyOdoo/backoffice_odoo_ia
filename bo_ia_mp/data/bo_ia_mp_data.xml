@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sample record limit per model for sample_data_json (configurable) -->
+        <record id="config_param_bo_ia_mp_sample_limit" model="ir.config_parameter">
+            <field name="key">bo_ia_mp.sample_record_limit</field>
+            <field name="value">100</field>
+        </record>
+        <!-- bo_ia_mp.api_access_key: POST /api/bo_ia_mp/token (Bearer licencia). Segundo factor en query/execute. -->
+        <record id="config_param_bo_ia_mp_api_access_key" model="ir.config_parameter">
+            <field name="key">bo_ia_mp.api_access_key</field>
+            <field name="value"></field>
+        </record>
+        <!-- token.ia.bo: post_init_hook. query/execute: Authorization Bearer = token.ia.bo. -->
+    </data>
+</odoo>

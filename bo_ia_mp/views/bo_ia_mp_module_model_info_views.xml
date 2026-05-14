@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tree and form views for bo.ia.mp.module.model.info -->
+<odoo>
+
+    <record id="view_bo_ia_mp_module_model_info_tree" model="ir.ui.view">
+        <field name="name">bo.ia.mp.module.model.info.tree</field>
+        <field name="model">bo.ia.mp.module.model.info</field>
+        <field name="arch" type="xml">
+            <tree string="Models" create="false" delete="false">
+                <field name="model_name"/>
+                <field name="table_name"/>
+                <field name="field_names"/>
+                <field name="sample_data_json" column_invisible="1"/>
+                <field name="module_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bo_ia_mp_module_model_info_form" model="ir.ui.view">
+        <field name="name">bo.ia.mp.module.model.info.form</field>
+        <field name="model">bo.ia.mp.module.model.info</field>
+        <field name="arch" type="xml">
+            <form string="Model Info" create="false" delete="false">
+                <header>
+                    <button name="action_load_sample_data"
+                            string="Load Sample Data"
+                            type="object"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="module_id"/>
+                            <field name="model_id"/>
+                        </group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="table_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="field_names"/>
+                        <field name="sample_data_json"
+                               widget="text"
+                               placeholder="Use 'Load Sample Data' to populate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bo_ia_mp_module_model_info_user,bo.ia.mp.module.model.info.user,model_bo_ia_mp_module_model_info,bo_ia_mp.group_bo_ia_mp_user,1,0,0,0
+access_bo_ia_mp_module_model_info_manager,bo.ia.mp.module.model.info.manager,model_bo_ia_mp_module_model_info,bo_ia_mp.group_bo_ia_mp_manager,1,1,1,1
+access_bo_ia_mp_saved_query_user,bo.ia.mp.saved.query.user,model_bo_ia_mp_saved_query,bo_ia_mp.group_bo_ia_mp_user,1,0,0,0
+access_bo_ia_mp_saved_query_manager,bo.ia.mp.saved.query.manager,model_bo_ia_mp_saved_query,bo_ia_mp.group_bo_ia_mp_manager,1,1,1,1
+access_bo_ia_mp_query_execution_user,bo.ia.mp.query.execution.user,model_bo_ia_mp_query_execution,bo_ia_mp.group_bo_ia_mp_user,1,0,0,0
+access_bo_ia_mp_query_execution_manager,bo.ia.mp.query.execution.manager,model_bo_ia_mp_query_execution,bo_ia_mp.group_bo_ia_mp_manager,1,1,1,1
+access_bo_ia_mp_api_log_manager,bo.ia.mp.api.log.manager,model_bo_ia_mp_api_log,bo_ia_mp.group_bo_ia_mp_manager,1,1,1,1

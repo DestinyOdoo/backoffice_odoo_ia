@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_license_subscription_wizard_form" model="ir.ui.view">
+        <field name="name">license.subscription.wizard.form</field>
+        <field name="model">license.subscription.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Actualizar suscripción" create="false" edit="true">
+                <sheet>
+                    <group>
+                        <field name="license_package_key" required="1"/>
+                    </group>
+                    <group invisible="license_package_key != 'payroll_plus'">
+                        <field name="active_employee_count" readonly="1"/>
+                        <field name="payroll_plus_range_key" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button
+                            name="action_continue"
+                            type="object"
+                            string="Continuar"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

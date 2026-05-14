@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_license_config_user,access.license.config.user,model_license_config,base.group_user,1,1,1,1
+access_license_record_user,access.license.record.user,model_license_record,base.group_user,1,1,1,1
+access_license_subscription_wizard_user,access.license.subscription.wizard.user,model_license_subscription_wizard,base.group_user,1,1,1,1

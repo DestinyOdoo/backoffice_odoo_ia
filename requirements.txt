@@ -1,0 +1,9 @@
+openpyxl==3.1.5
+mechanize
+ip2geotools
+boto3
+xlsxwriter
+xlwt
+Pillow
+oauth2
+linkedin
