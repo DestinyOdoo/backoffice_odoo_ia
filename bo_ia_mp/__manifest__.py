@@ -18,6 +18,9 @@
     "version": "17.0.1.7.0",
     "license": "OPL-1",
     "depends": ["base", "web", "bo_license_client"],
+    "images": [
+        "static/description/main_screenshot.png",
+    ],
     "data": [
         "data/bo_ia_mp_data.xml",
         "data/bo_ia_mp_cron.xml",
