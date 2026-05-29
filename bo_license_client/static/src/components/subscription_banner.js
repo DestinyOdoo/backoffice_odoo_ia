@@ -14,7 +14,7 @@ export class BoSubscriptionBanner extends Component {
         this.state = useState({
             visible: false,
             portalUrl:
-                "https://rbac-portal-15.preview.emergentagent.com/connect",
+                "https://boffice.cloud/connect",
             errorHint: "",
         });
         onWillStart(async () => {
