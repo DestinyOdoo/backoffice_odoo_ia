@@ -1,2 +1,2 @@
-# Pyarmor 9.2.4 (pro), 011791, 2026-05-29T14:21:50.651024
+# Pyarmor 9.2.4 (pro), 011791, 2026-06-04T16:55:18.217099
 from odoo.addons.bo_license_client.pyarmor_runtime_011791.pyarmor_runtime import __pyarmor__
