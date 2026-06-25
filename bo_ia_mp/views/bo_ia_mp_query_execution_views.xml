@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bo_ia_mp_query_execution_tree" model="ir.ui.view">
+        <field name="name">bo.ia.mp.query.execution.tree</field>
+        <field name="model">bo.ia.mp.query.execution</field>
+        <field name="arch" type="xml">
+            <tree string="Query Executions" create="false" delete="false">
+                <field name="query_id"/>
+                <field name="period_type"/>
+                <field name="period_start"/>
+                <field name="period_end"/>
+                <field name="record_count"/>
+                <field name="execution_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bo_ia_mp_query_execution_form" model="ir.ui.view">
+        <field name="name">bo.ia.mp.query.execution.form</field>
+        <field name="model">bo.ia.mp.query.execution</field>
+        <field name="arch" type="xml">
+            <form string="Query Execution" create="false" delete="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="query_id"/>
+                            <field name="period_type"/>
+                            <field name="execution_date"/>
+                        </group>
+                        <group>
+                            <field name="period_start"/>
+                            <field name="period_end"/>
+                            <field name="record_count"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="result_json" widget="text" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bo_ia_mp_query_execution" model="ir.actions.act_window">
+        <field name="name">Query Executions</field>
+        <field name="res_model">bo.ia.mp.query.execution</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

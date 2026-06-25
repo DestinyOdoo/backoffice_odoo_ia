@@ -1,0 +1,273 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bo_ia_mp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-27 12:00+0000\n"
+"PO-Revision-Date: 2026-01-27 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#. module: bo_ia_mp
+#: model:ir.actions.act_window,name:bo_ia_mp.action_bo_ia_mp_applications
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "Installed"
+msgstr "Instaladas"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "Application"
+msgstr "Aplicación"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "To Install"
+msgstr "Por instalar"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "To Upgrade"
+msgstr "Por actualizar"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "Installed Applications"
+msgstr "Aplicaciones instaladas"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_tree
+msgid "Name"
+msgstr "Nombre"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_tree
+msgid "Technical Name"
+msgstr "Nombre técnico"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_form
+msgid "Models"
+msgstr "Modelos"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_form
+msgid "Load Models"
+msgstr "Cargar modelos"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__model_id
+msgid "Odoo Model"
+msgstr "Modelo Odoo"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__model_name
+msgid "Technical Name"
+msgstr "Nombre técnico"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__table_name
+msgid "Table Name"
+msgstr "Nombre de tabla"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__field_names
+msgid "Fields"
+msgstr "Campos"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__module_id
+#: model:ir.model.fields,field_description:bo_ia_mp.field_ir_module_module__model_info_ids
+msgid "Application"
+msgstr "Aplicación"
+
+#. module: bo_ia_mp
+#: model:ir.model,name:bo_ia_mp.model_bo_ia_mp_module_model_info
+msgid "BO IA Memory Point - Module Model Info"
+msgstr "BO IA Memory Point - Información de modelos del módulo"
+
+#. module: bo_ia_mp
+#: model:ir.ui.menu,name:bo_ia_mp.menu_bo_ia_mp_root
+msgid "BO IA Memory Point"
+msgstr "BO IA Memory Point"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_module_model_info__sample_data_json
+msgid "Sample Data (JSON)"
+msgstr "Datos de muestra (JSON)"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,help:bo_ia_mp.field_bo_ia_mp_module_model_info__sample_data_json
+msgid "JSON with sample records from the table for AI. Quantity configurable via system parameters."
+msgstr "JSON con registros de muestra de la tabla para la IA. Cantidad configurable en parámetros del sistema."
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_model_info_form
+msgid "Load Sample Data"
+msgstr "Cargar datos de muestra"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_form
+msgid "Load Sample Data (All Models)"
+msgstr "Cargar datos de muestra (todos los modelos)"
+
+#. module: bo_ia_mp
+#: model:ir.ui.view,arch_db:bo_ia_mp.view_bo_ia_mp_module_model_info_form
+msgid "Use 'Load Sample Data' to populate"
+msgstr "Use 'Cargar datos de muestra' para llenar"
+
+#. module: bo_ia_mp
+#: model:ir.model,name:bo_ia_mp.model_bo_ia_mp_saved_query
+msgid "BO IA MP - Saved Query (SELECT only)"
+msgstr "BO IA MP - Consulta guardada (solo SELECT)"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_saved_query__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_saved_query__query
+msgid "Query"
+msgstr "Consulta"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_saved_query__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: bo_ia_mp
+#: model:ir.actions.act_window,name:bo_ia_mp.action_bo_ia_mp_saved_query
+msgid "Saved Queries"
+msgstr "Consultas guardadas"
+
+#. module: bo_ia_mp
+#: model:ir.model,name:bo_ia_mp.model_bo_ia_mp_query_execution
+msgid "BO IA MP - Query Execution Result"
+msgstr "BO IA MP - Resultado de ejecución de consulta"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_query_execution__period_type
+msgid "Period Type"
+msgstr "Tipo de período"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_query_execution__period_type__hourly
+msgid "Hourly"
+msgstr "Por hora"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_query_execution__period_type__daily
+msgid "Daily"
+msgstr "Diario"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_query_execution__period_type__weekly
+msgid "Weekly"
+msgstr "Semanal"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_query_execution__period_type__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: bo_ia_mp
+#: model:ir.actions.act_window,name:bo_ia_mp.action_bo_ia_mp_query_execution
+msgid "Query Executions"
+msgstr "Ejecuciones de consultas"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_saved_query__execution_ids
+msgid "Execution History"
+msgstr "Historial de ejecuciones"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_saved_query__execution_count
+msgid "Execution Count"
+msgstr "Número de ejecuciones"
+
+#. module: bo_ia_mp
+#: model:ir.model,name:bo_ia_mp.model_bo_ia_mp_api_log
+msgid "BO IA MP - HTTP API request log"
+msgstr "BO IA MP - Registro de peticiones API HTTP"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__endpoint
+msgid "Endpoint"
+msgstr "Endpoint"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_api_log__endpoint__token
+msgid "Token API"
+msgstr "API de token"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields.selection,name:bo_ia_mp.selection__bo_ia_mp_api_log__endpoint__query_execute
+msgid "Query execute API"
+msgstr "API de ejecución de consulta"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__http_status
+msgid "HTTP status"
+msgstr "Estado HTTP"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__success
+msgid "Success"
+msgstr "Correcto"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__user_id
+msgid "Odoo user"
+msgstr "Usuario Odoo"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__remote_addr
+msgid "Remote address"
+msgstr "Dirección remota"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__request_payload
+msgid "Request (sanitized)"
+msgstr "Petición (sanitizada)"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__response_payload
+msgid "Response"
+msgstr "Respuesta"
+
+#. module: bo_ia_mp
+#: model:ir.model.fields,field_description:bo_ia_mp.field_bo_ia_mp_api_log__error_message
+msgid "Error summary"
+msgstr "Resumen del error"
+
+#. module: bo_ia_mp
+#: model:ir.actions.act_window,name:bo_ia_mp.action_bo_ia_mp_api_log
+msgid "API request logs"
+msgstr "Registro de peticiones API"
+
+#. module: bo_ia_mp
+#: model:ir.ui.menu,name:bo_ia_mp.menu_bo_ia_mp_api_log
+msgid "API request logs"
+msgstr "Registro de peticiones API"

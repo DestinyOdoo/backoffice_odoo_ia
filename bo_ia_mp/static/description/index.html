@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BackOffice IA Memory Point | Odoo 17</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bo-primary: #2563eb;
+            --bo-primary-dark: #1d4ed8;
+            --bo-accent: #0d9488;
+            --bo-accent-soft: #ccfbf1;
+            --bo-ink: #0f172a;
+            --bo-muted: #64748b;
+            --bo-bg: #f1f5f9;
+            --bo-surface: #ffffff;
+            --bo-gradient: linear-gradient(135deg, #1e40af 0%, #2563eb 45%, #0d9488 100%);
+            --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.06);
+            --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.12);
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+            background: var(--bo-bg);
+            color: var(--bo-ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--bo-surface);
+            border: 1px solid #e2e8f0;
+            color: var(--bo-primary-dark);
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            background: var(--bo-surface);
+            border-radius: var(--radius-xl);
+            padding: 3.5rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(37, 99, 235, 0.08);
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 100% 0%, rgba(13, 148, 136, 0.12), transparent),
+                radial-gradient(ellipse 60% 50% at 0% 100%, rgba(37, 99, 235, 0.1), transparent);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 2.85rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--bo-ink);
+        }
+        .hero-title span {
+            background: var(--bo-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--bo-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .flow-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 0.75rem;
+            margin-top: 2rem;
+            padding: 1.25rem 1.5rem;
+            background: #f8fafc;
+            border-radius: var(--radius-lg);
+            border: 1px dashed #cbd5e1;
+        }
+        .flow-step {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--bo-ink);
+            padding: 0.5rem 0.85rem;
+            background: var(--bo-surface);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .flow-step i { color: var(--bo-primary); }
+        .flow-arrow { color: #94a3b8; font-size: 0.75rem; }
+
+        .section-head {
+            text-align: center;
+            margin: 3rem 0 1.75rem;
+        }
+        .section-head h2 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .section-head p {
+            color: var(--bo-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background: var(--bo-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            height: 100%;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(37, 99, 235, 0.25);
+        }
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+            color: #fff;
+        }
+        .feature-icon.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .feature-icon.teal { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+        .feature-icon.indigo { background: linear-gradient(135deg, #6366f1, #4338ca); }
+        .feature-icon.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .feature-icon.rose { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+        .feature-icon.slate { background: linear-gradient(135deg, #475569, #334155); }
+
+        .feature-card h5 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            font-size: 0.88rem;
+            color: var(--bo-muted);
+            margin: 0;
+        }
+
+        .value-banner {
+            background: var(--bo-gradient);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            color: #fff;
+            text-align: center;
+        }
+        .value-banner h3 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .value-banner p {
+            opacity: 0.92;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1rem;
+        }
+        .value-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+        .value-pills span {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .audience-card {
+            background: var(--bo-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--bo-primary);
+            height: 100%;
+            box-shadow: var(--shadow-card);
+        }
+        .audience-card h6 {
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+        .audience-card p {
+            font-size: 0.88rem;
+            color: var(--bo-muted);
+            margin: 0;
+        }
+
+        .panel-tech {
+            background: var(--bo-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .panel-tech ul {
+            margin: 0;
+            padding-left: 1.25rem;
+            color: var(--bo-muted);
+            font-size: 0.9rem;
+        }
+        .panel-tech li { margin-bottom: 0.4rem; }
+        .panel-tech code {
+            font-size: 0.82em;
+            background: #eff6ff;
+            color: var(--bo-primary-dark);
+            padding: 0.1em 0.45em;
+            border-radius: 6px;
+        }
+
+        .footer-brand {
+            background: var(--bo-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .footer-brand a {
+            color: var(--bo-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .footer-brand a:hover { text-decoration: underline; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .hero-logo { animation: float 4s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4" data-aos="fade-down">
+        <span class="badge-pill"><i class="fa fa-cube"></i> Odoo 17</span>
+        <span class="badge-pill"><i class="fa fa-robot"></i> IA &amp; datos</span>
+        <span class="badge-pill"><i class="fa fa-shield-halved"></i> OPL-1</span>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero mb-5" data-aos="fade-up">
+        <div class="hero-content text-center">
+            <img src="icon.png" alt="BackOffice IA Memory Point" class="hero-logo mb-3" height="56"/>
+            <p class="text-uppercase fw-bold mb-2" style="font-size: 0.7rem; letter-spacing: 0.2em; color: var(--bo-accent);">
+                Inteligencia de negocio sobre Odoo
+            </p>
+            <h1 class="hero-title mb-3">
+                <span>BackOffice IA Memory Point</span>
+            </h1>
+            <p class="hero-sub mb-0">
+                El punto de memoria que conecta Odoo con asistentes y chats de IA.
+                Centraliza esquema, muestras y consultas para que tu equipo pregunte en lenguaje natural
+                y obtenga respuestas útiles para la toma de decisiones.
+            </p>
+
+            <div class="flow-strip mx-auto mt-4" style="max-width: 820px;">
+                <span class="flow-step"><i class="fa fa-comments"></i> Chat / asistente</span>
+                <span class="flow-arrow"><i class="fa fa-chevron-right"></i></span>
+                <span class="flow-step"><i class="fa fa-brain"></i> Memory Point</span>
+                <span class="flow-arrow"><i class="fa fa-chevron-right"></i></span>
+                <span class="flow-step"><i class="fa fa-code"></i> Consultas seguras</span>
+                <span class="flow-arrow"><i class="fa fa-chevron-right"></i></span>
+                <span class="flow-step"><i class="fa fa-chart-line"></i> Decisiones</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Value proposition -->
+    <section class="value-banner mb-5" data-aos="zoom-in">
+        <h3>Un solo lugar para que la IA entienda tu Odoo</h3>
+        <p>
+            Deja de explicar tablas y campos en cada conversación. Memory Point indexa aplicaciones,
+            modelos y datos de muestra, y ejecuta consultas SELECT con historial por período —
+            ideal para dashboards conversacionales, copilotos y análisis operativo.
+        </p>
+        <div class="value-pills">
+            <span><i class="fa fa-check me-1"></i> Chats conectados vía API</span>
+            <span><i class="fa fa-check me-1"></i> Información centralizada</span>
+            <span><i class="fa fa-check me-1"></i> KPIs y reporting asistido</span>
+            <span><i class="fa fa-check me-1"></i> Solo lectura (SELECT)</span>
+        </div>
+    </section>
+
+    <!-- Audience -->
+    <div class="section-head" data-aos="fade-up">
+        <h2>Diseñado para equipos que deciden con datos</h2>
+        <p>Traduce la complejidad de Odoo en contexto listo para IA y para personas de negocio.</p>
+    </div>
+    <div class="row g-3 mb-5">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+            <div class="audience-card">
+                <h6><i class="fa fa-briefcase text-primary me-2"></i>Dirección y finanzas</h6>
+                <p>Ventas, facturación, inventario y nómina consultables sin depender del SQL manual.</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="audience-card" style="border-left-color: var(--bo-accent);">
+                <h6><i class="fa fa-users text-success me-2"></i>Operaciones y RR. HH.</h6>
+                <p>Respuestas rápidas sobre procesos, contratos, novedades y métricas del día a día.</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+            <div class="audience-card" style="border-left-color: #6366f1;">
+                <h6><i class="fa fa-laptop-code text-indigo me-2"></i>TI e integradores</h6>
+                <p>API REST, tokens y auditoría para enlazar ChatGPT, copilotos internos o pipelines RAG.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="section-head" data-aos="fade-up">
+        <h2>Qué puede hacer por ti</h2>
+        <p>Capacidades reales del módulo, pensadas para escalar la inteligencia sobre tus datos Odoo.</p>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+            <div class="feature-card">
+                <div class="feature-icon blue"><i class="fa fa-comments"></i></div>
+                <h5>Consultas desde chats conectados</h5>
+                <p>Integra asistentes externos: generan SQL en lenguaje natural, Memory Point valida (solo SELECT) y devuelve resultados JSON para el chat.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card">
+                <div class="feature-icon teal"><i class="fa fa-layer-group"></i></div>
+                <h5>Información centralizada</h5>
+                <p>Catálogo de aplicaciones, modelos, tablas, campos y muestras en un único punto — contexto persistente para IA y equipos.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+            <div class="feature-card">
+                <div class="feature-icon indigo"><i class="fa fa-chart-pie"></i></div>
+                <h5>Decisiones de negocio</h5>
+                <p>Consultas guardadas con ventanas de tiempo (hora, día, semana, mes) y resultados históricos para comparar tendencias y tomar decisiones.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card">
+                <div class="feature-icon amber"><i class="fa fa-book-open"></i></div>
+                <h5>Esquema listo para RAG</h5>
+                <p>Metadatos estructurados y datos de muestra configurables — menos alucinaciones, más precisión en embeddings y asistentes.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+            <div class="feature-card">
+                <div class="feature-icon rose"><i class="fa fa-clock-rotate-left"></i></div>
+                <h5>Automatización programada</h5>
+                <p>Cron horario ejecuta consultas guardadas; acumula ejecuciones por período sin intervención manual.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card">
+                <div class="feature-icon slate"><i class="fa fa-lock"></i></div>
+                <h5>Seguridad y trazabilidad</h5>
+                <p>API con doble factor, permisos Data IA (User / Manager), registro de llamadas y validación SELECT-only.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inside Odoo -->
+    <div class="section-head" data-aos="fade-up">
+        <h2>Dentro de Odoo</h2>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+            <div class="panel-tech h-100">
+                <h5 class="fw-bold mb-3"><i class="fa fa-grid-2 me-2 text-primary"></i>Aplicaciones y modelos</h5>
+                <ul>
+                    <li>Vistas lista, formulario y kanban por módulo instalado</li>
+                    <li>Pestaña <strong>Models</strong>: nombre técnico, tabla PostgreSQL y campos</li>
+                    <li><strong>Load Models</strong> y carga de muestras al instalar</li>
+                    <li>JSON de muestra configurable por parámetro de sistema</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+            <div class="panel-tech h-100">
+                <h5 class="fw-bold mb-3"><i class="fa fa-plug me-2 text-primary"></i>API e integración</h5>
+                <ul>
+                    <li>Guardar y listar consultas (<code>/api/bo_ia_mp/saved_query</code>)</li>
+                    <li>Ejecutar SELECT ad hoc (<code>/api/bo_ia_mp/query/execute</code>)</li>
+                    <li>Configurar clave de integración (<code>/api/bo_ia_mp/token</code>)</li>
+                    <li>Placeholders de fecha: <code>{{date_from}}</code>, <code>{{datetime_to}}</code>, etc.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permissions & install -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6" data-aos="fade-up">
+            <div class="feature-card">
+                <h5 class="fw-bold mb-3"><i class="fa fa-user-shield me-2 text-primary"></i>Permisos Data IA</h5>
+                <p class="mb-2"><strong>User</strong> — consulta catálogo, consultas guardadas e historial (lectura).</p>
+                <p class="mb-0"><strong>Manager</strong> — administración completa, API y configuración de tokens.</p>
+            </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="80">
+            <div class="feature-card">
+                <h5 class="fw-bold mb-3"><i class="fa fa-download me-2 text-primary"></i>Instalación</h5>
+                <ol class="small text-secondary ps-3 mb-2">
+                    <li>Copiar <code>bo_ia_mp</code> al path de addons (requiere <code>bo_license_client</code>)</li>
+                    <li>Actualizar lista de aplicaciones e instalar</li>
+                    <li>Al instalar: carga automática de modelos y muestras</li>
+                </ol>
+                <p class="small text-muted mb-0">Menú raíz: <strong>BO IA Memory Point</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-brand d-flex flex-wrap justify-content-between align-items-center gap-3" data-aos="fade-up">
+        <div>
+            <h5 class="fw-bold mb-1">BackOffice SAS</h5>
+            <p class="mb-0 text-secondary small">
+                <a href="https://www.boffice.cloud/" target="_blank" rel="noopener">boffice.cloud</a>
+                — Conectividad Odoo, licenciamiento e inteligencia de datos.
+            </p>
+        </div>
+        <span class="badge-pill">v17.0.1.7.0</span>
+    </footer>
+
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 700, once: true, offset: 40 });
+</script>
+</body>
+</html>

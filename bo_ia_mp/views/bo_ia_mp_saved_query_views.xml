@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bo_ia_mp_saved_query_tree" model="ir.ui.view">
+        <field name="name">bo.ia.mp.saved.query.tree</field>
+        <field name="model">bo.ia.mp.saved.query</field>
+        <field name="arch" type="xml">
+            <tree string="Saved Queries" editable="bottom">
+                <field name="name"/>
+                <field name="query"/>
+                <field name="execution_count"/>
+                <field name="description"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bo_ia_mp_saved_query_form" model="ir.ui.view">
+        <field name="name">bo.ia.mp.saved.query.form</field>
+        <field name="model">bo.ia.mp.saved.query</field>
+        <field name="arch" type="xml">
+            <form string="Saved Query">
+                <header>
+                    <button name="action_execute_queries"
+                            string="Execute All Queries Now"
+                            type="object"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                        <field name="execution_count" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="query" widget="text"
+                               placeholder="SELECT * FROM t WHERE date BETWEEN '{{date_from}}' AND '{{date_to}}'"/>
+                        <field name="description"/>
+                    </group>
+                    <notebook>
+                        <page string="Executions" name="executions">
+                            <field name="execution_ids" readonly="1">
+                                <tree string="Executions" create="false" delete="false">
+                                    <field name="period_type"/>
+                                    <field name="period_start"/>
+                                    <field name="period_end"/>
+                                    <field name="record_count"/>
+                                    <field name="execution_date"/>
+                                    <field name="result_json" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bo_ia_mp_saved_query" model="ir.actions.act_window">
+        <field name="name">Saved Queries</field>
+        <field name="res_model">bo.ia.mp.saved.query</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Save SELECT-only queries for AI consumption.</p>
+            <p>Use the API: POST /api/bo_ia_mp/saved_query with {"name": "...", "query": "SELECT ..."}</p>
+        </field>
+    </record>
+
+</odoo>

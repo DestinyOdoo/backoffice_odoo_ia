@@ -1,0 +1,5 @@
+# Dependencias para bo_license_client
+requests>=2.31.0
+
+# Para ofuscación (solo desarrollo)
+# pyarmor>=8.0.0

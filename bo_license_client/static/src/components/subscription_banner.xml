@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="bo_license_client.BoSubscriptionBanner">
+        <div t-if="state.visible" class="o_bo_license_subscription_banner w-100 border-bottom border-warning">
+            <div class="alert alert-warning w-100 rounded-0 mb-0 py-2 px-3 d-flex flex-wrap align-items-center justify-content-center gap-2 gap-md-3" role="alert">
+                <span class="text-center">
+                    Su licencia no está activa o requiere atención.
+                    <t t-if="state.errorHint">
+                        <span class="text-muted small ms-1">(<t t-esc="state.errorHint"/>)</span>
+                    </t>
+                </span>
+                <button type="button" class="btn btn-sm btn-primary" t-on-click="onClickUpdate">
+                    Actualizar suscripción
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>

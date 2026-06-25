@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Vista de Formulario (Solo Lectura) -->
+        <record id="view_license_config_form" model="ir.ui.view">
+            <field name="name">license.config.form</field>
+            <field name="model">license.config</field>
+            <field name="arch" type="xml">
+                <form string="Estado de Licencia" create="false" edit="true">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Estado de la Licencia</h1>
+                        </div>
+                        <group>
+                            <field name="license_status" readonly="1"/>
+                            <field name="client_name" readonly="1"/>
+                            <field name="license_type" readonly="1"/>
+                            <field name="expiration_date" readonly="1"/>
+                            <field name="last_validation" readonly="1"/>
+                        </group>
+                        <group string="Cobertura por paquete de licencia">
+                            <field name="licensed_applications" readonly="1" widget="text"/>
+                            <field name="unlicensed_applications" readonly="1" widget="text"/>
+                        </group>
+                        <footer>
+                            <button name="action_validate_license" string="Validar Licencia Ahora" type="object" class="btn-primary"/>
+                            <button name="action_view_licenses" string="Ver licencias" type="object" class="btn-secondary"/>
+                            <button name="action_open_subscription_portal" string="Actualizar suscripción" type="object" class="btn-secondary"/>
+                            <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_license_record_tree" model="ir.ui.view">
+            <field name="name">license.record.tree</field>
+            <field name="model">license.record</field>
+            <field name="arch" type="xml">
+                <tree string="Licencias">
+                    <field name="client_name"/>
+                    <field name="license_type"/>
+                    <field name="licensed_modules" optional="show"/>
+                    <field name="expiration"/>
+                    <field name="last_validated"/>
+                    <field name="token"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_license_record_form" model="ir.ui.view">
+            <field name="name">license.record.form</field>
+            <field name="model">license.record</field>
+            <field name="arch" type="xml">
+                <form string="Licencia" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="client_name"/>
+                            <field name="license_type"/>
+                            <field name="licensed_modules" widget="text"/>
+                            <field name="expiration"/>
+                            <field name="last_validated"/>
+                            <field name="token"/>
+                            <field name="modules" widget="text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción de Ventana -->
+        <record id="action_license_config" model="ir.actions.act_window">
+            <field name="name">Estado de Licencia</field>
+            <field name="res_model">license.config</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Menú -->
+        <menuitem id="menu_license_config"
+                  name="Licencia"
+                  parent="base.menu_administration"
+                  action="action_license_config"
+                  sequence="100"
+                  groups="base.group_system,bo_license_client.group_license_manager"/>
+</odoo>

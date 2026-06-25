@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root menu: BackOffice IA Memory Point -->
+    <menuitem id="menu_bo_ia_mp_root"
+              name="BO IA Memory Point"
+              sequence="50"
+              web_icon="bo_ia_mp,static/description/icon.png"
+              groups="bo_ia_mp.group_bo_ia_mp_user"/>
+
+    <!-- Applications submenu -->
+    <menuitem id="menu_bo_ia_mp_applications"
+              name="Applications"
+              parent="menu_bo_ia_mp_root"
+              action="action_bo_ia_mp_applications"
+              sequence="10"
+              groups="bo_ia_mp.group_bo_ia_mp_user"/>
+
+    <!-- Saved Queries submenu -->
+    <menuitem id="menu_bo_ia_mp_saved_query"
+              name="Saved Queries"
+              parent="menu_bo_ia_mp_root"
+              action="action_bo_ia_mp_saved_query"
+              sequence="20"
+              groups="bo_ia_mp.group_bo_ia_mp_manager"/>
+
+    <!-- HTTP API audit (token + query execute) -->
+    <menuitem id="menu_bo_ia_mp_api_log"
+              name="API request logs"
+              parent="menu_bo_ia_mp_root"
+              action="action_bo_ia_mp_api_log"
+              sequence="25"
+              groups="bo_ia_mp.group_bo_ia_mp_manager"/>
+
+    <!-- Query Executions submenu -->
+    <menuitem id="menu_bo_ia_mp_query_execution"
+              name="Query Executions"
+              parent="menu_bo_ia_mp_root"
+              action="action_bo_ia_mp_query_execution"
+              sequence="30"
+              groups="bo_ia_mp.group_bo_ia_mp_manager"/>
+
+</odoo>

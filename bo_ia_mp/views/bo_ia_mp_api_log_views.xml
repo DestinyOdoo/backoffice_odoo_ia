@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bo_ia_mp_api_log_tree" model="ir.ui.view">
+        <field name="name">bo.ia.mp.api.log.tree</field>
+        <field name="model">bo.ia.mp.api.log</field>
+        <field name="arch" type="xml">
+            <tree string="API request logs" create="false" edit="false" delete="true">
+                <field name="create_date"/>
+                <field name="endpoint"/>
+                <field name="success"/>
+                <field name="http_status"/>
+                <field name="user_id" optional="show"/>
+                <field name="remote_addr" optional="show"/>
+                <field name="error_message" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bo_ia_mp_api_log_form" model="ir.ui.view">
+        <field name="name">bo.ia.mp.api.log.form</field>
+        <field name="model">bo.ia.mp.api.log</field>
+        <field name="arch" type="xml">
+            <form string="API request log" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="create_date"/>
+                        <field name="endpoint"/>
+                        <field name="http_status"/>
+                        <field name="success"/>
+                        <field name="user_id"/>
+                        <field name="remote_addr"/>
+                    </group>
+                    <group string="Error" invisible="success">
+                        <field name="error_message" colspan="2"/>
+                    </group>
+                    <notebook>
+                        <page string="Request (sanitized)">
+                            <field name="request_payload" widget="text"/>
+                        </page>
+                        <page string="Response">
+                            <field name="response_payload" widget="text"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bo_ia_mp_api_log_search" model="ir.ui.view">
+        <field name="name">bo.ia.mp.api.log.search</field>
+        <field name="model">bo.ia.mp.api.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="endpoint"/>
+                <field name="http_status"/>
+                <field name="error_message"/>
+                <separator/>
+                <filter name="filter_success" string="Successful" domain="[('success', '=', True)]"/>
+                <filter name="filter_failed" string="With errors" domain="[('success', '=', False)]"/>
+                <filter name="filter_token" string="Token API" domain="[('endpoint', '=', 'token')]"/>
+                <filter name="filter_query" string="Query execute API" domain="[('endpoint', '=', 'query_execute')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bo_ia_mp_api_log" model="ir.actions.act_window">
+        <field name="name">API request logs</field>
+        <field name="res_model">bo.ia.mp.api.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No API calls recorded yet.
+            </p>
+            <p>
+                Successful and failed requests to
+                <code>/api/bo_ia_mp/token</code> and
+                <code>/api/bo_ia_mp/query/execute</code> appear here.
+            </p>
+        </field>
+    </record>
+
+</odoo>

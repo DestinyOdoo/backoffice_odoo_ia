@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ========== Search View: Applications with Installed filter ========== -->
+    <record id="view_bo_ia_mp_module_search" model="ir.ui.view">
+        <field name="name">ir.module.module.search.bo.ia.mp</field>
+        <field name="model">ir.module.module</field>
+        <field name="arch" type="xml">
+            <search string="Applications">
+                <field name="name"/>
+                <field name="shortdesc"/>
+                <field name="summary"/>
+                <filter string="Installed" name="installed" domain="[('state', '=', 'installed')]"/>
+                <filter string="Application" name="application" domain="[('application', '=', True)]"/>
+                <filter string="To Install" name="to_install" domain="[('state', '=', 'to install')]"/>
+                <filter string="To Upgrade" name="to_upgrade" domain="[('state', '=', 'to upgrade')]"/>
+                <separator/>
+                <filter string="Installed Applications" name="installed_application"
+                        domain="[('state', '=', 'installed'), ('application', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ========== Kanban View ========== -->
+    <record id="view_bo_ia_mp_module_kanban" model="ir.ui.view">
+        <field name="name">ir.module.module.kanban.bo.ia.mp</field>
+        <field name="model">ir.module.module</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_apps">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="shortdesc"/>
+                <field name="summary"/>
+                <field name="latest_version"/>
+                <field name="application"/>
+                <field name="icon"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_card o_kanban_app o_kanban_manage_records">
+                            <div class="o_kanban_app_left">
+                                <img t-att-src="'/bo_ia_mp/static/img/icon_app_default.png'"
+                                     alt="App"
+                                     class="o_kanban_app_image"
+                                     width="64"
+                                     height="64"/>
+                                <div class="o_kanban_app_info">
+                                    <strong class="o_kanban_app_name"><field name="shortdesc"/></strong>
+                                    <div class="o_kanban_app_desc text-muted">
+                                        <field name="summary"/>
+                                    </div>
+                                    <div class="o_kanban_app_version">
+                                        <field name="latest_version"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ========== Tree View ========== -->
+    <record id="view_bo_ia_mp_module_tree" model="ir.ui.view">
+        <field name="name">ir.module.module.tree.bo.ia.mp</field>
+        <field name="model">ir.module.module</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <tree string="Applications" create="false" delete="false" decoration-muted="state == 'uninstalled'">
+                <field name="shortdesc" string="Name"/>
+                <field name="name" string="Technical Name"/>
+                <field name="state"/>
+                <field name="application" column_invisible="1"/>
+                <field name="summary"/>
+                <field name="latest_version"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ========== Form View ========== -->
+    <record id="view_bo_ia_mp_module_form" model="ir.ui.view">
+        <field name="name">ir.module.module.form.bo.ia.mp</field>
+        <field name="model">ir.module.module</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="Application" create="false" delete="false">
+                <header>
+                    <button name="action_load_models"
+                            string="Load Models"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="action_load_sample_data_all_models"
+                            string="Load Sample Data (All Models)"
+                            type="object"
+                            groups="bo_ia_mp.group_bo_ia_mp_manager"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="shortdesc" placeholder="Application Name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" string="Technical Name" readonly="1"/>
+                            <field name="state" readonly="1"/>
+                            <field name="application" readonly="1"/>
+                            <field name="latest_version" readonly="1"/>
+                        </group>
+                        <group/>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description" nolabel="1" readonly="1"/>
+                        </page>
+                        <page string="Models" name="models">
+                            <field name="model_info_ids" mode="tree">
+                                <tree string="Models" create="false" delete="false" editable="bottom">
+                                    <field name="model_name"/>
+                                    <field name="table_name"/>
+                                    <field name="field_names"/>
+                                    <field name="sample_data_json" optional="show"/>
+                                </tree>
+                                <form string="Model Info" create="false" delete="false">
+                                    <header>
+                                        <button name="action_load_sample_data"
+                                                string="Load Sample Data"
+                                                type="object"
+                                                class="btn-primary"/>
+                                    </header>
+                                    <group>
+                                        <group>
+                                            <field name="module_id"/>
+                                            <field name="model_id"/>
+                                        </group>
+                                        <group>
+                                            <field name="model_name"/>
+                                            <field name="table_name"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="field_names"/>
+                                        <field name="sample_data_json"
+                                               widget="text"
+                                               placeholder="Use 'Load Sample Data' to populate"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========== Action: Applications (filter installed by default) ========== -->
+    <record id="action_bo_ia_mp_applications" model="ir.actions.act_window">
+        <field name="name">Applications</field>
+        <field name="res_model">ir.module.module</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="view_bo_ia_mp_module_search"/>
+        <field name="context">{
+            'search_default_installed': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No applications found.
+            </p>
+            <p>
+                Remove the "Installed" filter to see all applications.
+            </p>
+        </field>
+    </record>
+
+    <!-- Force use of our custom views (not base module views) -->
+    <record id="act_window_view_bo_ia_mp_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_bo_ia_mp_module_tree"/>
+        <field name="act_window_id" ref="action_bo_ia_mp_applications"/>
+    </record>
+    <record id="act_window_view_bo_ia_mp_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_bo_ia_mp_module_form"/>
+        <field name="act_window_id" ref="action_bo_ia_mp_applications"/>
+    </record>
+    <record id="act_window_view_bo_ia_mp_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_bo_ia_mp_module_kanban"/>
+        <field name="act_window_id" ref="action_bo_ia_mp_applications"/>
+    </record>
+
+</odoo>
